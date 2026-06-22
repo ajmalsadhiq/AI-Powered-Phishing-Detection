@@ -56,6 +56,9 @@ export default function Page() {
             <p className="mt-5 text-lg leading-8 text-slate-600">
               Paste suspicious message text or a URL, get a risk score, and inspect the signals that triggered the alert.
             </p>
+            <p className="mt-4 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm">
+              Built by a VIT Vellore B.Tech CSE student with a CGPA of 8.38.
+            </p>
           </div>
         </div>
 
