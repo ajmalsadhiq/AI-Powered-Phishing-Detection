@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "description": "Chrome extension that scans Gmail messages for phishing signals.",
   "permissions": ["storage", "activeTab"],
-  "host_permissions": ["https://mail.google.com/*"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "<all_urls>"
+  ],
   "background": {
     "service_worker": "background.js"
   },

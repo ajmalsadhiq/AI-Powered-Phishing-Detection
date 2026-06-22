@@ -11,4 +11,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 EXPOSE 5000
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["sh", "-c", "gunicorn -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-5000} app:app"]
+
