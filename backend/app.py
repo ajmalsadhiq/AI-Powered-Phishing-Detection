@@ -85,7 +85,7 @@ def predict(payload: PredictRequest) -> dict[str, Any]:
     links = extract_links(text)
     suspicious_links = []
     for link in links:
-        link_analysis = url_analyzer.analyze(link)
+        link_analysis = url_analyzer.analyze(link, email_text=text)
         suspicious_links.append(
             {
                 "url": link,
@@ -93,6 +93,8 @@ def predict(payload: PredictRequest) -> dict[str, Any]:
                 "has_https": link_analysis["has_https"],
                 "suspicious_keywords": link_analysis["suspicious_keywords"],
                 "domain_age_risk": link_analysis["domain_age_risk"],
+                "ssl_status": link_analysis["ssl_status"],
+                "domain_mismatch": link_analysis["domain_mismatch"],
                 "flagged": link_analysis["overall_risk"] >= 0.5,
             }
         )

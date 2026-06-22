@@ -62,24 +62,40 @@ class PhishingModel:
     def _heuristic_predict(self, text: str) -> PredictionResult:
         lowered = text.lower()
         suspicious_terms = {
-            "urgent": 0.08,
+            "verify your identity": 0.18,
+            "permanent account closure": 0.15,
+            "account closure": 0.14,
+            "urgent": 0.12,
+            "verify now": 0.12,
             "verify": 0.15,
             "password": 0.12,
+            "click here": 0.18,
+            "click the link": 0.09,
+            "clicking the link": 0.09,
+            "immediately": 0.08,
+            "24 hours": 0.10,
+            "valued customer": 0.06,
+            "dear customer": 0.05,
             "account": 0.08,
             "login": 0.12,
-            "click here": 0.18,
-            "immediately": 0.08,
-            "confirm": 0.1,
-            "wire transfer": 0.2,
+            "confirm": 0.10,
+            "wire transfer": 0.20,
             "gift card": 0.15,
             "reset your": 0.12,
+            "suspended": 0.12,
+            "restricted": 0.10,
         }
         score = 0.12
         matched = []
-        for term, weight in suspicious_terms.items():
-            if term in lowered:
+        temp_text = lowered
+        # Sort by length descending to match longer phrases first (greedy matching)
+        for term in sorted(suspicious_terms.keys(), key=len, reverse=True):
+            weight = suspicious_terms[term]
+            if term in temp_text:
                 score += weight
                 matched.append(term)
+                temp_text = temp_text.replace(term, " [MASK] ")
+
         if any(token in lowered for token in ["http://", "https://", "www."]):
             score += 0.08
             matched.append("url_present")
@@ -97,3 +113,4 @@ class PhishingModel:
             risk_score=round(score, 4),
             signals={"source": "heuristic", "matched_terms": matched},
         )
+

@@ -16,6 +16,8 @@ export type AnalysisResponse = {
     has_https: boolean;
     suspicious_keywords: string[];
     domain_age_risk: boolean;
+    ssl_status: string;
+    domain_mismatch: boolean;
     flagged: boolean;
   }>;
 };
@@ -28,5 +30,7 @@ export type UrlAnalysisResponse = {
   domain_age_days: number | null;
   domain_age_risk: boolean;
   url_length_risk: boolean;
+  ssl_status: string;
+  domain_mismatch: boolean;
   overall_risk: number;
 };

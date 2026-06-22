@@ -171,6 +171,11 @@ export default function Page() {
                             <p className="mt-2 text-xs text-slate-300">
                               Risk {(link.overall_risk * 100).toFixed(1)}% · {link.has_https ? 'HTTPS' : 'No HTTPS'}
                             </p>
+                            {link.ssl_status && (
+                              <p className="mt-1 text-xs text-slate-400">
+                                SSL: {link.ssl_status} {link.domain_mismatch ? '· Brand Mismatch' : ''}
+                              </p>
+                            )}
                             {link.suspicious_keywords.length > 0 ? (
                               <p className="mt-1 text-xs text-slate-300">
                                 Keywords: {link.suspicious_keywords.join(', ')}
@@ -195,7 +200,9 @@ export default function Page() {
                 <div className="mt-4 space-y-3 text-sm text-slate-600">
                   <p><strong className="text-slate-950">Risk:</strong> {(urlResult.overall_risk * 100).toFixed(1)}%</p>
                   <p><strong className="text-slate-950">HTTPS:</strong> {urlResult.has_https ? 'Yes' : 'No'}</p>
-                  <p><strong className="text-slate-950">Domain age risk:</strong> {urlResult.domain_age_risk ? 'Yes' : 'No'}</p>
+                  <p><strong className="text-slate-950">Domain Age:</strong> {urlResult.domain_age_days !== null ? `${urlResult.domain_age_days} days` : 'Unknown (High Risk)'}</p>
+                  <p><strong className="text-slate-950">SSL Certificate:</strong> {urlResult.ssl_status}</p>
+                  <p><strong className="text-slate-950">Brand Mismatch:</strong> {urlResult.domain_mismatch ? 'Yes (High Risk)' : 'No'}</p>
                   <p><strong className="text-slate-950">Keywords:</strong> {urlResult.suspicious_keywords.join(', ') || 'None'}</p>
                 </div>
               ) : (
