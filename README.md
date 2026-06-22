@@ -60,14 +60,8 @@ docker compose -f backend/docker-compose.yml up --build
 - If Redis is unavailable, the backend falls back to an in-memory cache.
 - If the ML dependencies are missing, the backend falls back to heuristic scoring so the app still works.
 
-## Chrome extension
-
-Load the `extension/` folder as an unpacked extension in Chrome.
 
 ## Training
 
 The training scaffold expects a CSV file with at least a `text` column and an optional `label` column.
 
-## License
-
-MIT
