@@ -1,5 +1,6 @@
 function createWarningBadge(data) {
   const badge = document.createElement('div');
+  badge.className = 'phishguard-alert-badge';
   const riskPercent = (data.risk_score * 100).toFixed(0);
   const topSignals = data.explanation
     ? data.explanation
@@ -45,31 +46,46 @@ async function scanVisibleEmailBlocks() {
   // Target specifically Gmail's email body containers (.a3s) for high efficiency
   const candidates = document.querySelectorAll('.a3s');
   for (const element of candidates) {
-    if (element.dataset.phishguardScanned) {
-      continue;
-    }
     const text = element.innerText?.trim();
     if (!text || text.length < 30) {
       continue;
     }
+
+    // Check if we already scanned this exact text content on this DOM node
+    if (element.dataset.phishguardScannedText === text) {
+      continue;
+    }
     
-    // Mark as scanned immediately to prevent parallel triggers while fetching
-    element.dataset.phishguardScanned = 'true';
+    // Mark text immediately to prevent parallel triggers while fetching
+    element.dataset.phishguardScannedText = text;
     console.log("AJMAL's-PHISHING-GUARD: Scanning email body text (length:", text.length, ")");
 
     try {
       const response = await chrome.runtime.sendMessage({ type: 'PHISHGUARD_PREDICT', text });
       console.log("AJMAL's-PHISHING-GUARD: API response:", response);
       if (response?.ok && response.data?.prediction === 'phishing') {
-        element.dataset.phishguardFlagged = 'true';
-        element.style.borderLeft = '4px solid #dc2626';
-        element.style.paddingLeft = '16px';
-        element.prepend(createWarningBadge(response.data));
+        if (!element.dataset.phishguardFlagged) {
+          element.dataset.phishguardFlagged = 'true';
+          element.style.borderLeft = '4px solid #dc2626';
+          element.style.paddingLeft = '16px';
+          element.prepend(createWarningBadge(response.data));
+        }
+      } else {
+        // If clean, clean up any previous warning styling/badges from recycled element
+        if (element.dataset.phishguardFlagged) {
+          element.removeAttribute('data-phishguard-flagged');
+          element.style.borderLeft = '';
+          element.style.paddingLeft = '';
+          const existingBadge = element.querySelector('.phishguard-alert-badge');
+          if (existingBadge) {
+            existingBadge.remove();
+          }
+        }
       }
     } catch (err) {
       console.error("AJMAL's-PHISHING-GUARD: Message error:", err);
       // Revert scan status on error to allow retry on next loop
-      element.removeAttribute('data-phishguard-scanned');
+      element.removeAttribute('data-phishguard-scanned-text');
     }
   }
 }
