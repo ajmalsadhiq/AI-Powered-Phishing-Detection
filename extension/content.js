@@ -55,9 +55,11 @@ async function scanVisibleEmailBlocks() {
     
     // Mark as scanned immediately to prevent parallel triggers while fetching
     element.dataset.phishguardScanned = 'true';
+    console.log("AJMAL's-PHISHING-GUARD: Scanning email body text (length:", text.length, ")");
 
     try {
       const response = await chrome.runtime.sendMessage({ type: 'PHISHGUARD_PREDICT', text });
+      console.log("AJMAL's-PHISHING-GUARD: API response:", response);
       if (response?.ok && response.data?.prediction === 'phishing') {
         element.dataset.phishguardFlagged = 'true';
         element.style.borderLeft = '4px solid #dc2626';
@@ -65,6 +67,7 @@ async function scanVisibleEmailBlocks() {
         element.prepend(createWarningBadge(response.data));
       }
     } catch (err) {
+      console.error("AJMAL's-PHISHING-GUARD: Message error:", err);
       // Revert scan status on error to allow retry on next loop
       element.removeAttribute('data-phishguard-scanned');
     }
