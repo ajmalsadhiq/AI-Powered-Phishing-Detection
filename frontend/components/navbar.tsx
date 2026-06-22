@@ -3,44 +3,68 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const links = [
+const routeLinks = [
   { href: '/', label: 'Home' },
   { href: '/working', label: 'Working' },
+];
+
+const profileLinks = [
+  { href: 'https://github.com/ajmalsadhiq', label: 'GitHub' },
+  { href: 'https://resume-gamma-nine-11.vercel.app/', label: 'Resume' },
+  {
+    href: 'https://www.linkedin.com/in/ajmal-sadhiq-puthanpura-ebrahim-012ab0291/?isSelfProfile=false',
+    label: 'LinkedIn',
+  },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/60 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white shadow-halo transition group-hover:-translate-y-0.5">
-            PG
-          </div>
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-slate-950">PhishGuard AI</p>
-            <p className="text-xs text-slate-500">AI phishing detection portfolio</p>
-          </div>
-        </Link>
+    <>
+      <nav className="fixed left-5 top-5 z-50 sm:left-6 sm:top-6">
+        <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white/90 px-2 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl transition-shadow duration-300 ease-out hover:shadow-xl sm:px-2.5 sm:py-2.5">
+          {profileLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold tracking-wide text-white shadow-md shadow-slate-950/20 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
-        <nav className="flex items-center gap-2 rounded-full border border-slate-200 bg-white p-1 shadow-sm">
-          {links.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  active ? 'bg-slate-950 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
-    </header>
+      <Link
+        href={pathname === '/working' ? '/' : '/working'}
+        aria-label={pathname === '/working' ? 'Go to home page' : 'Go to working page'}
+        className="fixed right-5 top-5 z-50 sm:right-6 sm:top-6"
+      >
+        <span className="relative grid h-14 w-52 grid-cols-2 items-center rounded-full border border-slate-200 bg-white/90 p-1.5 shadow-lg shadow-slate-950/10 backdrop-blur-xl transition-shadow duration-300 ease-out hover:shadow-xl">
+          <span
+            className={`absolute inset-y-1.5 left-1.5 w-[calc(50%-0.1875rem)] rounded-full bg-slate-950 shadow-md transition-transform duration-500 ease-in-out ${
+              pathname === '/working' ? 'translate-x-[calc(100%+0.1875rem)]' : 'translate-x-0'
+            }`}
+          />
+          <span
+            className={`relative z-10 text-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
+              pathname === '/' ? 'text-white' : 'text-slate-600'
+            }`}
+          >
+            Home
+          </span>
+          <span
+            className={`relative z-10 text-center text-sm font-semibold tracking-wide transition-colors duration-300 ${
+              pathname === '/working' ? 'text-white' : 'text-slate-600'
+            }`}
+          >
+            Working
+          </span>
+        </span>
+      </Link>
+    </>
   );
 }
