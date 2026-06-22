@@ -57,19 +57,6 @@
       <button id="save">Save API URL</button>
       <div class="note">Tip: keep the backend running while you browse Gmail.</div>
     </div>
-    <script>
-      const input = document.getElementById('apiBaseUrl');
-      const button = document.getElementById('save');
-      chrome.storage.sync.get(['apiBaseUrl'], (result) => {
-        input.value = result.apiBaseUrl || 'http://localhost:5000';
-      });
-      button.addEventListener('click', () => {
-        chrome.storage.sync.set({ apiBaseUrl: input.value.trim() || 'http://localhost:5000' });
-        button.textContent = 'Saved';
-        setTimeout(() => {
-          button.textContent = 'Save API URL';
-        }, 1000);
-      });
-    </script>
+    <script src="popup.js"></script>
   </body>
 </html>
