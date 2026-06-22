@@ -1,6 +1,6 @@
 function createWarningBadge() {
   const badge = document.createElement('div');
-  badge.textContent = 'PhishGuard AI warning';
+  badge.textContent = "AJMAL's-PHISHING-GUARD warning";
   badge.style.cssText = [
     'display:inline-flex',
     'align-items:center',

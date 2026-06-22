@@ -15,7 +15,7 @@ from model import PhishingModel
 from url_analyzer import URLAnalyzer
 
 app = FastAPI(
-    title="PhishGuard AI API",
+    title="AJMAL's-PHISHING-GUARD API",
     version="1.0.0",
     description="AI-powered phishing detection API with text and URL analysis.",
 )

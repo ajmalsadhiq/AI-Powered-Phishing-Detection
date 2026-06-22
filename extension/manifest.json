@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PhishGuard AI",
+  "name": "AJMAL's-PHISHING-GUARD",
   "version": "1.0.0",
   "description": "Chrome extension that scans Gmail messages for phishing signals.",
   "permissions": ["storage", "activeTab"],

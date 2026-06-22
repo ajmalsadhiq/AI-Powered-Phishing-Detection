@@ -15,12 +15,12 @@ const checks = [
 
 export default function WorkingPage() {
   return (
-    <main className="min-h-screen px-4 py-8 text-slate-900 sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 pb-8 pt-24 text-slate-900 sm:px-6 sm:pt-28 lg:px-8 lg:pt-32">
       <section className="mx-auto max-w-7xl space-y-6">
         <div className="overflow-hidden rounded-[2rem] border border-white/60 bg-white/80 p-8 shadow-halo backdrop-blur-xl sm:p-10">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-blue-700">Working</p>
           <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
-            How PhishGuard AI works
+            How AJMAL's-PHISHING-GUARD works
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
             This page explains how the model is trained, what it checks, and how the full phishing-detection flow

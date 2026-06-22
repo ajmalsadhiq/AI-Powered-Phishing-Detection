@@ -45,19 +45,16 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen px-4 py-8 text-slate-900 sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 pb-8 pt-24 text-slate-900 sm:px-6 sm:pt-28 lg:px-8 lg:pt-32">
       <section className="mx-auto max-w-7xl">
         <div className="mb-8 overflow-hidden rounded-[2rem] border border-white/60 bg-white/80 p-8 shadow-halo backdrop-blur-xl sm:p-10">
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-blue-700">PhishGuard AI</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-blue-700">AJMAL's-PHISHING-GUARD</p>
             <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
               Detect phishing emails and risky URLs with explainable AI.
             </h1>
             <p className="mt-5 text-lg leading-8 text-slate-600">
               Paste suspicious message text or a URL, get a risk score, and inspect the signals that triggered the alert.
-            </p>
-            <p className="mt-4 inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm">
-              Built by a VIT Vellore B.Tech CSE student with a CGPA of 8.38.
             </p>
           </div>
         </div>

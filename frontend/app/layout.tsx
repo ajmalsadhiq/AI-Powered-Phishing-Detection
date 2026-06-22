@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import Navbar from '@/components/navbar';
 
 export const metadata = {
-  title: 'PhishGuard AI',
+  title: "AJMAL's-PHISHING-GUARD",
   description: 'AI-powered phishing detection dashboard',
 };
 

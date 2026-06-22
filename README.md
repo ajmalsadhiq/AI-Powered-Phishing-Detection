@@ -1,4 +1,4 @@
-# PhishGuard AI
+# AJMAL's-PHISHING-GUARD
 
 AI-powered phishing detection system with a FastAPI backend, optional DistilBERT inference, explainability hooks, a Next.js dashboard, and a Chrome extension for Gmail.
 
