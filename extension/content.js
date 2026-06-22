@@ -43,8 +43,20 @@ function createWarningBadge(data) {
 }
 
 async function scanVisibleEmailBlocks() {
-  // Target specifically Gmail's email body containers (.a3s) for high efficiency
-  const candidates = document.querySelectorAll('.a3s');
+  // Resolve candidates using precedence to prevent double-matching parent-child containers
+  let candidates = document.querySelectorAll('.a3s');
+  if (candidates.length === 0) {
+    candidates = document.querySelectorAll('.msgBody');
+  }
+  if (candidates.length === 0) {
+    candidates = document.querySelectorAll('.mail-message');
+  }
+  if (candidates.length === 0) {
+    candidates = document.querySelectorAll('[role="listitem"] .ii');
+  }
+
+  console.log("AJMAL's-PHISHING-GUARD: scanVisibleEmailBlocks called. Candidates found:", candidates.length);
+  
   for (const element of candidates) {
     const text = element.innerText?.trim();
     if (!text || text.length < 30) {
@@ -90,11 +102,7 @@ async function scanVisibleEmailBlocks() {
   }
 }
 
-const observer = new MutationObserver(() => {
-  clearTimeout(window.__phishguardTimer);
-  window.__phishguardTimer = setTimeout(scanVisibleEmailBlocks, 1000);
-});
-
-observer.observe(document.documentElement, { childList: true, subtree: true });
+// Run the scan every 1.5 seconds to bypass dynamic Gmail SPA mutation locks
+setInterval(scanVisibleEmailBlocks, 1500);
 scanVisibleEmailBlocks();
 
