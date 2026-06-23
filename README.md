@@ -12,12 +12,7 @@ AI-powered phishing detection system with a FastAPI backend, optional DistilBERT
 - Chrome extension that flags suspicious Gmail content
 - Docker and Redis support for local deployment
 
-
-<p align="center">
-  <img src="./images/Screenshot 2026-06-23 100957.png" width="320" alt="original app"/>
-  <br>
-  <em>AJMAL's-PHISHING-GUARD official app</em>
-</p>
+<img width="1918" height="878" alt="image" src="https://github.com/user-attachments/assets/ca7de7b6-50d1-443b-b040-7f5156c7a5df" />
 
 ## Project layout
 
