@@ -76,7 +76,7 @@ AJMAL's-PHISHING-GUARD includes a Chrome Extension that integrates directly with
 ### Screenshots:
 
 <p align="center">
-  <img src="./images/extension_popup_mockup.png" width="320" alt="AJMAL's-PHISHING-GUARD Extension Popup Widget"/>
+  <img src="./images/extension_popup_mockup.png?v=2" width="320" alt="AJMAL's-PHISHING-GUARD Extension Popup Widget"/>
   <br>
   <em>AJMAL's-PHISHING-GUARD Extension Configuration Widget</em>
 </p>
@@ -84,7 +84,7 @@ AJMAL's-PHISHING-GUARD includes a Chrome Extension that integrates directly with
 <br>
 
 <p align="center">
-  <img src="./images/extension_gmail_mockup.png" width="800" alt="Gmail Warning Banner Overlay"/>
+  <img src="./images/extension_gmail_mockup.png?v=2" width="800" alt="Gmail Warning Banner Overlay"/>
   <br>
   <em>Gmail Phishing Warning Banner & Highlight Overlay</em>
 </p>
